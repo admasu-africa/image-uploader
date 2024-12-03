@@ -6,6 +6,8 @@ import { Repository } from 'typeorm';
 import { Item } from './item.entity';
 import { ItemImage } from './item-image.entity';
 import { BadRequestException } from '@nestjs/common';
+import { ILike } from 'typeorm'; 
+
 
 @Injectable()
 export class ItemService {
@@ -14,12 +16,43 @@ export class ItemService {
     @InjectRepository(ItemImage) private itemImageRepository: Repository<ItemImage>,
   ) {}
 
-  async getAllItems(): Promise<Item[]> {
-    return await this.itemRepository.find({ 
-      relations: ['images'],
+  
+  async getItemsWithImages(page: number, limit: number,title?: string) {
+    const skip = (page - 1) * limit;
+
+     const whereCondition = title ? { title: ILike(`%${title}%`) } : {};
+    const [items, total] = await this.itemRepository.findAndCount({
+      skip,
+      take: limit,
+      relations: ['images'], 
+      where: whereCondition, 
     });
+
+
+     
+  if (total === 0) {
+    return {
+      message: 'No items found matching your search criteria.',
+      data: [],
+      total,
+      page,
+      limit,
+    };
   }
 
+
+    return {
+      data: items.map(item => ({
+        id: item.id,
+        title: item.title,
+        description: item.description,
+        images: item.images.map(img => img.url),
+      })),
+      total,
+      page,
+      limit,
+    };
+  }
 
   async createItem(title: string, description: string, files: Express.Multer.File[]): Promise<Item> {
     
@@ -31,7 +64,7 @@ export class ItemService {
     for (const file of files) {
       const bufferStream = new Readable();
       bufferStream.push(file.buffer);
-      bufferStream.push(null); // End the stream
+      bufferStream.push(null); 
 
       try {
         const uploadResult = await new Promise<any>((resolve, reject) => {
@@ -40,6 +73,7 @@ export class ItemService {
             (error, result) => {
               if (error) {
                 reject(new BadRequestException('Failed to upload image to Cloudinary.'));
+                
               } else {
                 resolve(result);
               }
@@ -57,7 +91,6 @@ export class ItemService {
         throw error; 
       }
     }
-
 
     await this.itemImageRepository.save(images);
 

@@ -7,6 +7,7 @@ import {
   ValidationPipe,
   BadRequestException,
   Get,
+  Query,
 } from '@nestjs/common';
 import { FilesInterceptor } from '@nestjs/platform-express';
 import { CreateItemDto } from './create-item.dto';
@@ -17,9 +18,15 @@ import { Item } from './item.entity';
 export class ItemController {
   constructor(private readonly itemService: ItemService) {}
 
+
   @Get()
-  async getItems(): Promise<Item[]> {
-    return await this.itemService.getAllItems();
+  async getItems(
+    @Query('page') page: number = 1,
+    @Query('limit') limit: number = 5,
+    @Query('title') title?: string, 
+  ) {
+    
+    return this.itemService.getItemsWithImages(page, limit, title); 
   }
 
   @Post()
@@ -28,12 +35,11 @@ export class ItemController {
     @UploadedFiles() files: Express.Multer.File[],
     @Body(new ValidationPipe({ whitelist: true })) createItemDto: CreateItemDto,
   ) {
-
     if (!files || files.length === 0) {
       throw new BadRequestException('At least one image must be uploaded.');
     }
 
-    const maxSizeInMB = 2; 
+    const maxSizeInMB = 10; 
     const allowedMimeTypes = ['image/jpeg', 'image/png', 'image/gif']; 
 
 
@@ -54,7 +60,6 @@ export class ItemController {
     }
     createItemDto.files = files;
 
-
     return this.itemService.createItem(
       createItemDto.title,
       createItemDto.description,
@@ -63,26 +68,3 @@ export class ItemController {
   }
 
 }
-
-
-
-
-// import { Controller, Post, Body, UploadedFiles, UseInterceptors } from '@nestjs/common';
-// import { FilesInterceptor } from '@nestjs/platform-express';
-// import { ItemService } from './item.service';
-
-// @Controller('items')
-// export class ItemController {
-//   constructor(private readonly itemService: ItemService) {}
-
-//   @Post()
-//   @UseInterceptors(FilesInterceptor('files', 10)) // Allow up to 10 files
-//   async createItem(
-//     @Body('title') title: string,
-//     @Body('description') description: string,
-//     @UploadedFiles() files: Express.Multer.File[],
-//   ) {
-//     return this.itemService.createItem(title, description, files);
-//   }
-// }
-
