@@ -1,0 +1,263 @@
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #f0f0f0;
+}
+
+header {
+  position: sticky; 
+  top: 0; 
+  z-index: 1000; 
+  background: #4caf50; 
+}
+
+nav {
+  display: flex;
+  justify-content: center;
+  background: #4caf50;
+  padding: 1rem;
+}
+
+nav a {
+  color: white;
+  text-decoration: none;
+  margin: 0 1rem;
+  font-size: 1.2rem;
+  transition: color 0.3s;
+}
+
+nav a:hover {
+  color: #d4d4d4;
+}
+
+
+#searchElement {
+  display: flex; 
+  justify-content: center; 
+  align-items: center; 
+  margin: 20px; 
+}
+
+#searchInput {
+  padding: 10px 15px; 
+  border: 1px solid #ccc; 
+  border-radius: 24px; 
+  font-size: 16px; 
+  width: 250px; 
+  margin: 10px 15px;  
+}
+
+#searchButton {
+  padding: 10px 15px; 
+  background-color: #007bff; 
+  color: white; 
+  border: none; 
+  border-radius: 8px; 
+  cursor: pointer; 
+  font-size: 16px; 
+  margin: 5px 10px;
+  transition: background-color 0.3s; 
+}
+
+
+#searchButton:hover {
+  background-color: #0056b3; 
+}
+
+
+#resetButton {
+  padding: 10px 15px; 
+  background-color: #dc3545; 
+  color: white; 
+  border: none; 
+  border-radius: 8px; 
+  cursor: pointer; 
+  font-size: 16px; 
+  transition: background-color 0.3s; 
+}
+
+
+#resetButton:hover {
+  background-color: #c82333; 
+}
+
+
+#message {
+  text-align: center; 
+  margin-top: 10px; 
+}
+
+#scrollToTop {
+  position: fixed;
+  bottom: 20px;
+  left: 50%; 
+  transform: translateX(-50%); 
+  background-color: #007bff; 
+  color: white; 
+  border: none; 
+  border-radius: 4px; 
+  padding: 10px 15px; 
+  cursor: pointer; 
+  font-size: 16px; 
+  transition: opacity 0.3s; 
+}
+
+#scrollToTop:hover {
+  background-color: #0056b3; 
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center; 
+  width: 90%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+
+#gallery {
+  display: flex;
+  flex-direction: column; 
+  gap: 14px; 
+  padding: 16px;
+  justify-content: center; 
+  width: 100%; 
+  align-items: center; 
+}
+
+.card {
+  display: flex;
+  flex-direction: column; 
+  align-items: center; 
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 16px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  background-color: #fff;
+  width: 100%; 
+  max-width: 800px; 
+  overflow: hidden; 
+  justify-content: center; 
+}
+.card h3, .card p {
+  width: 100%; 
+  text-align: center; 
+  margin-bottom: 16px;
+  font-weight: bold;
+}
+
+.card h3 {
+  font-size: 1.5em;
+  font-weight: bold;
+}
+
+.card p {
+  font-size: 1.2em;
+  color: #555;
+  line-height: 1.5;
+}
+
+.card .image-container {
+  display: flex;
+  flex-wrap: wrap; 
+  gap: 10px; 
+  width: 100%;
+  justify-content: center; 
+}
+
+.card .image-container img {
+  width: 150px; 
+  height: 150px; 
+  border-radius: 8px;
+  object-fit: cover; 
+  display: block;
+  transition: opacity 0.3s ease-in-out;
+}
+
+
+.card .see-more {
+  display: none;
+  margin-top: 10px;
+  padding: 8px 16px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  width: 100%;
+  text-align: center;
+}
+
+.card .see-more.show {
+  display: inline-block;
+}
+
+.card .see-more:hover {
+  background-color: #0056b3;
+}
+
+
+@media (max-width: 768px) {
+  .card .image-container {
+      gap: 8px; 
+  }
+
+  .card img {
+      width: 120px; 
+      height: 120px; 
+  }
+}
+
+
+@media (min-width: 768px) {
+  .card .image-container {
+      gap: 16px;
+  }
+
+  .card img {
+      width: 150px;
+      height: 150px;
+  }
+}
+
+@media (max-width: 480px) {
+  .card h3 {
+      font-size: 1.2em;
+  }
+
+  .card p {
+      font-size: 1em;
+  }
+}
+
+.loading-indicator {
+  text-align: center;
+  margin-top: 20px;
+  font-size: 1.5em;
+  color: #666;
+}
+
+.card:hover {
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+  transform: translateY(-2px);
+  transition: 0.3s ease;
+}
+
+.card img.lazy {
+  opacity: 0;
+  transition: opacity 0.3s ease-in-out;
+}
+
+.card img.loaded {
+  opacity: 1;
+}
+
+.loading-indicator {
+  text-align: center;
+  margin-top: 20px;
+  font-size: 1.5em;
+  color: #666;
+}

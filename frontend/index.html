@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>View Images</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header>
+    <nav>
+        <a href="upload.html">Upload images</a>
+        <a href="index.html">View Images</a>
+    </nav>
+</header>
+    <div class="container">
+      <div id="searchElement">
+        <input type="text" id="searchInput" placeholder="Search by title..." />
+        <button id="searchButton">Search</button>
+        <button id="resetButton">Clear</button>
+      </div>
+      <div id="message" style="display: none; color: red; font-weight: bold;"></div>
+      
+      <div id="gallery" class="gallery">
+      </div>
+      
+      
+      <div class="loading-indicator" id="loadingIndicator" style="display: none;">
+        Loading more items...
+      </div>
+      
+      
+    </div>
+    
+    <button id="scrollToTop" style="display: none;">↑ Top</button> 
+    
+  <script src="view.js"></script>
+</body>
+</html>
