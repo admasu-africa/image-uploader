@@ -204,6 +204,18 @@ nav a:hover {
 
 
 @media (max-width: 768px) {
+  #searchElement{
+    flex-direction: column;
+  }
+  nav{
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;  
+  }
+  nav a{
+    padding: 5px;
+    border: 1px;
+  }
   .card .image-container {
       gap: 8px; 
   }
@@ -264,3 +276,242 @@ nav a:hover {
   font-size: 1.5em;
   color: #666;
 }
+
+
+/*
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #f0f0f0;
+}
+
+header {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  background: #4caf50;
+}
+
+nav {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  background: #4caf50;
+  padding: 1rem;
+}
+
+nav a {
+  color: white;
+  text-decoration: none;
+  font-size: 1rem;
+  margin: 0.5rem 0;
+  transition: color 0.3s;
+}
+
+nav a:hover {
+  color: #d4d4d4;
+}
+
+#searchElement {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 20px 10px;
+}
+
+#searchInput {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 24px;
+  font-size: 14px;
+  width: 100%;
+  max-width: 300px;
+  margin-bottom: 10px;
+}
+
+#searchButton,
+#resetButton {
+  padding: 10px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 14px;
+  margin: 5px 10px;
+  transition: background-color 0.3s;
+  width: 100%;
+  max-width: 150px;
+}
+
+#searchButton:hover {
+  background-color: #0056b3;
+}
+
+#resetButton {
+  background-color: #dc3545;
+}
+
+#resetButton:hover {
+  background-color: #c82333;
+}
+
+#message {
+  text-align: center;
+  margin-top: 10px;
+  color: #c82333;
+  font-size: 1rem;
+}
+
+#scrollToTop {
+  position: fixed;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: hsl(91, 92%, 23%);
+  color: white;
+  border: none;
+  border-radius: 4px;
+  padding: 10px 15px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: opacity 0.3s;
+}
+
+#scrollToTop:hover {
+  background-color: #0056b3;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+#gallery {
+  display: grid;
+  gap: 16px;
+  padding: 16px;
+  width: 100%;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+}
+
+.card {
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 16px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  max-width: 320px;
+}
+
+.card h3 {
+  font-size: 1.2rem;
+  font-weight: bold;
+  text-align: center;
+  margin-bottom: 8px;
+}
+
+.card p {
+  font-size: 1rem;
+  color: #555;
+  text-align: center;
+  margin-bottom: 16px;
+}
+
+.card .image-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  justify-content: center;
+  width: 100%;
+}
+
+.card .image-container img {
+  width: 100px;
+  height: 100px;
+  border-radius: 8px;
+  object-fit: cover;
+}
+
+.card .see-more {
+  display: none;
+  margin-top: 10px;
+  padding: 8px 16px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.card .see-more.show {
+  display: inline-block;
+}
+
+.card .see-more:hover {
+  background-color: #0056b3;
+}
+
+.loading-indicator {
+  text-align: center;
+  margin-top: 20px;
+  font-size: 1.2rem;
+  color: #666;
+}
+
+@media (max-width: 768px) {
+  nav {
+    flex-direction: column;
+  }
+
+  .card .image-container img {
+    width: 80px;
+    height: 80px;
+  }
+
+  .card h3 {
+    font-size: 1rem;
+  }
+
+  .card p {
+    font-size: 0.9rem;
+  }
+}
+
+@media (max-width: 480px) {
+  #searchInput {
+    width: 100%;
+  }
+
+  #searchButton,
+  #resetButton {
+    max-width: 120px;
+    font-size: 12px;
+  }
+
+  .card .image-container img {
+    width: 70px;
+    height: 70px;
+  }
+
+  .card h3 {
+    font-size: 0.9rem;
+  }
+
+  .card p {
+    font-size: 0.8rem;
+  }
+}
+
+
+*/
