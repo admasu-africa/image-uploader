@@ -30,8 +30,10 @@ async function fetchItems(page, limit, searchQuery = '') {
   const response = await fetch(`http://localhost:3000/items?page=${page}&limit=${limit}&title=${searchQuery}`);
   const result = await response.json();
 
+  console.log(result); 
 
-  console.log(result)
+
+  // console.log(result)
   if (result.data.length === 0) {
     showMessage(searchQuery ? 'No results found for your search.' : 'No data available.');
   } else {
@@ -142,6 +144,7 @@ searchButton.addEventListener('click', () => {
   searchQuery = searchInput.value.trim();
   currentPage = 1; 
   gallery.innerHTML = ''; 
+  window.addEventListener('scroll', handleScroll);
   loadItems(); 
 });
 
@@ -151,6 +154,7 @@ resetButton.addEventListener('click', () => {
   searchInput.value = ''; 
   currentPage = 1; 
   gallery.innerHTML = ''; 
+  window.addEventListener('scroll', handleScroll);
   loadItems(); 
 });
 

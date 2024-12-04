@@ -20,7 +20,13 @@ export class ItemService {
   async getItemsWithImages(page: number, limit: number,title?: string) {
     const skip = (page - 1) * limit;
 
+  //   const whereCondition = queryTitle || queryDescription ? [
+  //     queryTitle ? { title: ILike(`%${queryTitle}%`) } : undefined,
+  //     queryDescription ? { description: ILike(`%${queryDescription}%`) } : undefined
+  // ].filter(Boolean) : {};
+  
      const whereCondition = title ? { title: ILike(`%${title}%`) } : {};
+
     const [items, total] = await this.itemRepository.findAndCount({
       skip,
       take: limit,
@@ -39,7 +45,6 @@ export class ItemService {
       limit,
     };
   }
-
 
     return {
       data: items.map(item => ({
@@ -73,7 +78,6 @@ export class ItemService {
             (error, result) => {
               if (error) {
                 reject(new BadRequestException('Failed to upload image to Cloudinary.'));
-                
               } else {
                 resolve(result);
               }

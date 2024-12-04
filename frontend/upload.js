@@ -24,6 +24,8 @@ document.getElementById('imageForm').addEventListener('submit', async (e) => {
         body: formData,
       });
       const result = await response.json();
+
+      // console.log("Response: ",response,"Result: ",result)
   
       if (response.ok) {
         uploadStatus.textContent = 'Upload successful!';
